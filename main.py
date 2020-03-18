@@ -23,10 +23,10 @@ def programa(txt):
                     return 0
                 if estado == 1:
                     constantDicc(linea)          # Envia a linea para agregar al diccionario, en caso de que la linea
-                if len(linea)>len(".const"):     # contenga un .const seguido de la constante, verifica y envia la linea
-                    linea.replace(".const", "")   # solo en caso de que luego de remplazar el espaciado, la linea tenga
-                    linea = noSpace(linea)       # un tama;o mayor a 3 (a=1)
-                    if len(linea) >= 3:
+                if ".const" in linea:     # contenga un .const seguido de la constante, verifica y envia la linea
+                    linea = linea.replace(".const", "")  # solo en caso de que luego de remplazar el espaciado, la linea tenga
+                    linea = noSpace(linea)       # un tama;o mayor a 2 (a=1)
+                    if len(linea) >= 2:
                         constantDicc(linea)
                     elif (len(linea) < 3) and (len(linea) > 0):
                         print("ERROR: Formato incorrecto en las constantes")
@@ -37,10 +37,11 @@ def programa(txt):
                     return 0
                 if estado == 2:
                     comandos += [linea]          # arega los comandos a la lista luego de encontrar el .text, se utiliza
-                linea = linea.replace(".text", "")  # aux para verificar que no hayan instrucciones en la misma linea del .text
-                aux = noSpace(linea)
-                if len(aux) >= 1:
-                    comandos += [linea]
+                if ".text" in linea:
+                    linea = linea.replace(".text", "")  # aux para verificar que no hayan instrucciones en la misma linea del .text
+                    aux = noSpace(linea)
+                    if len(aux) >= 1:
+                        comandos += [linea]
                 estado = 2
             else:
                 print("ERROR: declaracion de constantes sin un .const")
@@ -49,14 +50,14 @@ def programa(txt):
         print("ERROR, archivo no contiene '.text' ")
         return 0
 
-    
+
 def noSpace(linea):
     linea = linea.replace("➝", "")
     linea = linea.replace("🖵", "")
-    return linea    
-    
+    return linea
 
-def espComent(linea):               # Se utiliza para cambiar todos los espacios y tabs por 🖵 y ➝
+
+def espComent(linea):
     linea = linea.replace("    ", "➝")
     linea = linea.replace(" ", "🖵")
     a = b = 0
@@ -74,7 +75,12 @@ def constantDicc(linea):            # Elimina los espacios y tabs y toma usando 
     linea = linea.replace("🖵", "")
     igual = linea.find("=")
     if ("=" in linea) and (igual > 0) and (igual < len(linea)):
-        constant.setdefault(linea[igual-1], linea[igual+1:])
+        var = constant.get(linea[igual-1])
+        if type(var) == type(""):
+            constant.pop(linea[igual-1])
+            constant.setdefault(linea[igual-1], linea[igual+1:])
+        else:
+            constant.setdefault(linea[igual-1], linea[igual+1:])
     else:
         print("ERROR: Formato de constante incorrecto")
 
@@ -85,5 +91,4 @@ def main():
 
 
 main()
-
 
