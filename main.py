@@ -25,8 +25,7 @@ def programa(txt):
                     constantDicc(linea)          # Envia a linea para agregar al diccionario, en caso de que la linea
                 if len(linea)>len(".const"):     # contenga un .const seguido de la constante, verifica y envia la linea
                     linea.replace(".const", "")   # solo en caso de que luego de remplazar el espaciado, la linea tenga
-                    linea = linea.replace("➝", "")  # un tama;o mayor a 3 (a=1)
-                    linea = linea.replace("🖵", "")
+                    linea = noSpace(linea)       # un tama;o mayor a 3 (a=1)
                     if len(linea) >= 3:
                         constantDicc(linea)
                     elif (len(linea) < 3) and (len(linea) > 0):
@@ -39,8 +38,7 @@ def programa(txt):
                 if estado == 2:
                     comandos += [linea]          # arega los comandos a la lista luego de encontrar el .text, se utiliza
                 linea = linea.replace(".text", "")  # aux para verificar que no hayan instrucciones en la misma linea del .text
-                aux = linea.replace("➝", "")
-                aux = aux.replace("🖵", "")
+                aux = noSpace(linea)
                 if len(aux) >= 1:
                     comandos += [linea]
                 estado = 2
@@ -51,6 +49,12 @@ def programa(txt):
         print("ERROR, archivo no contiene '.text' ")
         return 0
 
+    
+def noSpace(linea):
+    linea = linea.replace("➝", "")
+    linea = linea.replace("🖵", "")
+    return linea    
+    
 
 def espComent(linea):               # Se utiliza para cambiar todos los espacios y tabs por 🖵 y ➝
     linea = linea.replace("    ", "➝")
