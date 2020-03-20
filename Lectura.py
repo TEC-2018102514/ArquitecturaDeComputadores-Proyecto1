@@ -1,6 +1,7 @@
 constant = {}
 punto_Program = ''
 comandos = []
+comandosBase = ["ld", "st", "add", "adc", "and", "jmp", "testl"]
 
 
 def programa(txt):
@@ -49,6 +50,7 @@ def programa(txt):
     if len(comandos) == 0:
         print("ERROR, archivo no contiene '.text' ")
         return 0
+    print(punto_Program, "\n", constant, "\n", comandos)
 
 
 def noSpace(linea):
@@ -83,12 +85,3 @@ def constantDicc(linea):            # Elimina los espacios y tabs y toma usando 
             constant.setdefault(linea[igual-1], linea[igual+1:])
     else:
         print("ERROR: Formato de constante incorrecto")
-
-
-def main():
-    programa("Programa_Ejemplo.txt")
-    print(punto_Program, "\n", constant, "\n", comandos)
-
-
-main()
-
