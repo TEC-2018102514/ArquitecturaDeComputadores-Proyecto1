@@ -30,7 +30,8 @@ def botoncargar():
     file = askopenfile(mode="r", filetypes=[(".txt", ".txt")])
     if file is not None:
         content = file.read() 
-        print(content) 
+        print(content)
+        Lectura.programa(file.name)
   
 
     #menu.directory = tkFileDialog.askdirectory()
@@ -41,6 +42,15 @@ def traducir():
 def salir():
     msgBox = messagebox.askquestion ('Salir','Seguro que desea salir de aplicación?',icon = 'warning')
     if msgBox == 'yes':
-        menu.destroy()
+        sys.exit()
     else:
         messagebox.showinfo('Retorna','Se regresara a la aplicacion')
+
+        
+def main():
+    menu.mainloop()
+
+
+main()
+
+        
