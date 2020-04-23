@@ -1,10 +1,8 @@
-constant = {}
-punto_Program = ''
-comandos = []
-comandosBase = ["ld", "st", "add", "adc", "and", "jmp", "testl"]
+from Herramientas import *
+from Instrucciones import leerInstrucciones
 
 
-def programa(txt):
+def programa(txt):              # hace la lectura inicial del programa a cargar
     global punto_Program, comandos
     prog_op = open(txt, 'r', encoding='utf-8')
     prog = prog_op.readlines()
@@ -51,37 +49,6 @@ def programa(txt):
         print("ERROR, archivo no contiene '.text' ")
         return 0
     print(punto_Program, "\n", constant, "\n", comandos)
+    leerInstrucciones(comandos)                 #Una vez revisado el programa, envia la lista de comandos a evaluar
 
-
-def noSpace(linea):
-    linea = linea.replace("➝", "")
-    linea = linea.replace("🖵", "")
-    return linea
-
-
-def espComent(linea):
-    linea = linea.replace("    ", "➝")
-    linea = linea.replace(" ", "🖵")
-    a = b = 0
-    if ';' in linea:
-        a = linea.find(";")
-        b = linea.find("\n")
-    linea = linea.replace(linea[a:b], "")
-    linea = linea.replace("\n", "")
-    return linea
-
-
-def constantDicc(linea):            # Elimina los espacios y tabs y toma usando el = el nombre de la variable y el valor
-    global constant                 # se maneja en string por que el valor puede ser de formato 0x000
-    linea = linea.replace("➝", "")
-    linea = linea.replace("🖵", "")
-    igual = linea.find("=")
-    if ("=" in linea) and (igual > 0) and (igual < len(linea)):
-        var = constant.get(linea[igual-1])
-        if type(var) == type(""):
-            constant.pop(linea[igual-1])
-            constant.setdefault(linea[igual-1], linea[igual+1:])
-        else:
-            constant.setdefault(linea[igual-1], linea[igual+1:])
-    else:
-        print("ERROR: Formato de constante incorrecto")
+programa("Programa_Ejemplo.txt")

@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter.filedialog import askopenfile
+import Lectura
 
 #propiedades del menu
 menu = Tk()
@@ -52,5 +53,3 @@ def main():
 
 
 main()
-
-        
