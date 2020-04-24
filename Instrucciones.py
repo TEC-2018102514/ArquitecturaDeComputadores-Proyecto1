@@ -1,6 +1,6 @@
 from Herramientas import espComent, noSpace
 from AND import prepareAND
-#from ADC import prepareADC
+from ADC import prepareADC
 
 
 def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a una
@@ -10,8 +10,8 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
             item = noSpace(item)
             if "and" in item:
                 prepareAND(item)
-            #elif "adc" in item:        #CHES
-               # prepareADC(item)
+            elif "adc" in item:        #CHES
+                prepareADC(item)
 
             #elif "add" in item:        #SANTI
             #elif "jump" in item:

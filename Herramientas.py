@@ -121,4 +121,12 @@ def ifHex(numero):                      # Revisa que el valor sea u hexadecimal 
         return False
 
 
-
+def getNum(numero):
+    if ifHex(numero):
+        return int(numero[2:], 16)
+    elif numero.isdigit():
+        return int(numero)
+    elif ifBin(numero):
+        return int(numero[2:],2)
+    else:
+        print("ERROR: Valor No Valido")
