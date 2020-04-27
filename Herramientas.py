@@ -63,6 +63,23 @@ def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la 
     print(salida_indiv)
 
 
+
+
+def tipoi(funcion,IC,Rb,Dd,Rd):
+    salida_indiv = {'instruccion': funcion, 'binario': '', 'hexa': ''}
+    Rb = regist_strbin(Rb)
+    Dd = BinToStr(bin(Dd),18)
+    Rd = regist_strbin(Rd)
+
+
+    inst_bin = Dd + Rd + Rb + IC
+    salida_indiv["binario"] = inst_bin
+    dec = int(inst_bin,2)
+    salida_indiv["hexa"] = hex(dec)[2:]
+    print(salida_indiv)
+
+
+
 def regist_strbin(registro):            # Recibe un registro y lo pasa al formato de str, por ejemplo
     RBin = bin(int(registro[1:]))       # regist_strbin("R2") = "0010"
     RBin = str(RBin[2:])
