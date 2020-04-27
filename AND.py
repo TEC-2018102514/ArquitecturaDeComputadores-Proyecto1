@@ -7,6 +7,8 @@ def prepareAND(funcion):        #Hace la evaluacion inicial de la instruccion
     print(funcion)
     if len(funcion) == 3:       #Que contenga 3 Registros se
         for item in funcion:
+            #HOLAAAA
+
             if ifRegistro(item):        #Que los registros existan
                 valor = registros.get(item)
                 try:
