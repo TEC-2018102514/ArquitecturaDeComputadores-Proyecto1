@@ -7,7 +7,6 @@ def prepareAND(funcion):        #Hace la evaluacion inicial de la instruccion
     print(funcion)
     if len(funcion) == 3:       #Que contenga 3 Registros se
         for item in funcion:
-            i = 0
             if ifRegistro(item):        #Que los registros existan
                 valor = registros.get(item)
                 try:
@@ -18,7 +17,6 @@ def prepareAND(funcion):        #Hace la evaluacion inicial de la instruccion
             else:
                 print("ERROR: Registro inexistente")
 
-            i += 1
         return AND_fun(funcstr,funcion[0], funcion[1], funcion[2])  #Una vez validado el contenido pasa a la operacion
 
     else:
