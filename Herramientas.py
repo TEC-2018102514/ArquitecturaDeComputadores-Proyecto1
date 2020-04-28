@@ -68,7 +68,7 @@ def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la 
 def tipoi(funcion,IC,Rb,Dd,Rd):
     salida_indiv = {'instruccion': funcion, 'binario': '', 'hexa': ''}
     Rb = regist_strbin(Rb)
-    Dd = BinToStr(bin(Dd),18)
+    Dd = BinToStr(bin(Dd),19)
     Rd = regist_strbin(Rd)
 
 
