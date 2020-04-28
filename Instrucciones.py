@@ -1,6 +1,8 @@
 from Herramientas import espComent, noSpace
 from AND import prepareAND
 from ADC import prepareADC
+from LDcambios import prepareLd
+
 
 
 def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a una
@@ -18,7 +20,9 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
 
             #elif "st" in item:         #PIA
 
-            #elif "ld" in item:         #DANI
+            elif "ld" in item:
+                prepareLd(item)
+            #DANI
             #elif "tstl" in item:
 
             #else:  (el unico caso que se puede presentar es que este marcando el inicio de un jump)
