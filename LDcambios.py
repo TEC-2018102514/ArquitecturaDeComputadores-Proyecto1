@@ -26,7 +26,7 @@ def prepareLd(funcion):  # Hace la evaluacion inicial de la instruccion #"ldR1,a
                                 return 0
                 i += 1
 
-            return LD_fun(funcaux, funcion[0], constante, funcion[2])  # Una vez validado el contenido pasa a la operacion
+            return LD_fun(funcaux, funcion[2], constante, funcion[0])  # Una vez validado el contenido pasa a la operacion
 
         else:
             print("ERROR: Cantidad de registros erronea")
