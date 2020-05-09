@@ -1,13 +1,9 @@
 from Herramientas import *
 
 
-def prepareJMP(funcion):        #Hace la evaluacion inicial de la instruccion
+def prepareJMP(funcion,suma):
+    iniciojmp=0                  #Hace la evaluacion inicial de la instruccion
     print("[",funcion[3:],"]")
-    #suma = 0
-    iniciojmp = 0
-    #while (suma < 24):
-    suma=24
-    print ("hola")
     resta = iniciojmp-suma
                                         #Convierte el decimal negativo de la resta en un binario en base 2 del largo del Dc
     s = bin(resta & int("1"*27, 2))[2:]    
