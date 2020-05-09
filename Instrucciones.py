@@ -2,6 +2,7 @@ from Herramientas import espComent, noSpace
 from AND import prepareAND
 from ADC import prepareADC
 from ADD import prepareADD
+from JMP import prepareJMP
 from LDcambios import prepareLd
 
 
@@ -18,7 +19,8 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
 
             elif "add" in item:        #SANTI
                 prepareADD(item)
-            #elif "jump" in item:
+            elif "jmp" in item:
+                prepareJMP(item)
 
             #elif "st" in item:         #PIA
 
