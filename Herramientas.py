@@ -62,9 +62,6 @@ def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la 
     salida_indiv["hexa"] = hex(dec)[2:]         #Todos los diccionarios con sus valores de instrucciones
     print(salida_indiv)
 
-
-
-
 def tipoi(funcion,IC,Rb,Dd,Rd):
     salida_indiv = {'instruccion': funcion, 'binario': '', 'hexa': ''}
     Rb = regist_strbin(Rb)
@@ -78,6 +75,15 @@ def tipoi(funcion,IC,Rb,Dd,Rd):
     salida_indiv["hexa"] = hex(dec)[2:]
     print(salida_indiv)
 
+def tipoJ(inst, Dc, IC):
+    salida_indiv= {'instruccion': inst, 'binario': '', 'hexa' : ''}
+    Dc = str(Dc)
+    binfinal = Dc+IC
+    salida_indiv["binario"] = binfinal
+    dec = int(binfinal, 2)
+    salida_indiv["hexa"] = hex(dec)[2:]
+    print(salida_indiv)
+    
 
 
 def regist_strbin(registro):            # Recibe un registro y lo pasa al formato de str, por ejemplo
@@ -100,6 +106,14 @@ def BinToStr(numero, tamaño):           # Recibe un numero binario y lo convier
     i= len(nueva)
     while i< tamaño:
         nueva = "0" + nueva
+        i += 1
+    return nueva
+
+def BinBase2ToStr(numero, tamaño):           # Recibe un numero binario y lo convierte a string con 1s del tama;o esperado
+    nueva = numero[2:]
+    i= len(nueva)
+    while i< tamaño:
+        nueva = "1" + nueva
         i += 1
     return nueva
 
