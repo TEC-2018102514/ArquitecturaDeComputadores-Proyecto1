@@ -3,6 +3,8 @@ from AND import prepareAND
 from ADC import prepareADC
 from ADD import prepareADD
 from JMP import prepareJMP
+from TESTL import prepareTESTL
+from ST import prepareST
 from LDcambios import prepareLd
 
 
@@ -27,13 +29,17 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
                 cont+=4
                 prepareJMP(item, cont)
 
-            #elif "st" in item:         #PIA
+            elif "st" in item:
+                prepareST(item)
+                cont+=4
 
             elif "ld" in item:
                 prepareLd(item)
                 cont+=4
             #DANI
-            #elif "tstl" in item:
+            elif "testl" in item:
+                prepareTESTL(item)
+                cont+=4
 
             #elif ":" in item:
 
