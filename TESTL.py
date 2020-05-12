@@ -13,7 +13,7 @@ def prepareTESTL(funcion):        #Hace la evaluacion inicial de la instruccion
                     nuevo = bin(valor)
                     registros.setdefault(item, nuevo)
                 except:
-                    print("no se pudo we")
+                    print("no se pudo")
             else:
                 print("ERROR: Registro inexistente")
 
@@ -25,5 +25,7 @@ def prepareTESTL(funcion):        #Hace la evaluacion inicial de la instruccion
 
 
 def TESTL_fun(funcion, valor1, valor2):      # Recibe la funcion,Rf1,Rf2
-        tipoA(funcion, "00001", valor2, valor1, destino, "000000", "0", "0101", "0101")     #Envia los valores para crear la funcion
+        tipoA(funcion, "00001", valor2, valor1, "0000", "000000", "0", "0101", "0101")     #Envia los valores para crear la funcion
+        
+
         
