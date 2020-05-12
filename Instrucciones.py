@@ -29,7 +29,7 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
                 cont+=4
                 prepareJMP(item, cont)
 
-            elif "st" in item:
+            elif "st" in item and "testl" not in item:
                 prepareST(item)
                 cont+=4
 
