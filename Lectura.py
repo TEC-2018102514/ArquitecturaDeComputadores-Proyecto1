@@ -43,7 +43,7 @@ def programa(txt):              # hace la lectura inicial del programa a cargar
                         comandos += [linea]
                 estado = 2
             else:
-                print("ERROR: declaracion de constantes sin un .const")
+                print("ERROR: declaracion de constantes sin un .const o sin .program")
                 return 0
     if len(comandos) == 0:
         print("ERROR, archivo no contiene '.text' ")

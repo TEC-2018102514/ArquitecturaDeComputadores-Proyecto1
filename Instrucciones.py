@@ -8,7 +8,7 @@ from LDcambios import prepareLd
 
 
 def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a una
-    if len(comandos) >= 0:
+    if len(comandos) > 0:
         cont=0
         for item in comandos:
             item = espComent(item)
@@ -35,6 +35,10 @@ def leerInstrucciones(comandos):    # Se utiliza para evaluar as funciones una a
             #DANI
             #elif "tstl" in item:
 
-            #else:  #(el unico caso que se puede presentar es que este marcando el inicio de un jump)
-                
+            #elif ":" in item:
 
+            else:
+                print("ERROR: %s no tiene un formato valido" % item)
+                
+    else:
+        print("ERROR: .text no contiene instrucciones")
