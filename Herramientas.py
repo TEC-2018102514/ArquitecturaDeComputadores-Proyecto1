@@ -48,8 +48,12 @@ def constantDicc(linea):            # Elimina los espacios y tabs y toma usando 
 
 def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la instruccion a binario y hexadecimal,
     salida_indiv= {'instruccion': inst, 'binario': '', 'hexa': ''}  # recibe los valores delos datos, exceptuando los
-    Rd = regist_strbin(Rd)                                          # registros, que se traducen dentro de la funcion
-    Rf1 = regist_strbin(Rf1)
+    Rf1 = regist_strbin(Rf1)                               # registros, que se traducen dentro de la funcion
+    if Condicion != "0101":     #En caso de que sea condición 5, un testl, el valor de Rd será "0000"
+        Rd = regist_strbin(Rd)                                    
+    else:
+        Rd = "0000"
+        
     if Tipo != "1":                 # En caso de que sea tipo 1, un adc, el valor de Rf2 sera "0000"
         Rf2 = regist_strbin(Rf2)
         K = "000000"
