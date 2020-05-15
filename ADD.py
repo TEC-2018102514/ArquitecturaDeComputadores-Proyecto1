@@ -1,5 +1,7 @@
 #ADD
 from Herramientas import *
+from tkinter import *
+from tkinter import messagebox
 
 
 def prepareADD(funcion):        #Hace la evaluacion inicial de la instruccion
@@ -16,14 +18,14 @@ def prepareADD(funcion):        #Hace la evaluacion inicial de la instruccion
                     nuevo = bin(valor)
                     registros.setdefault(item, nuevo)
                 except:
-                    print("no se pudo we")
+                    msgBox = messagebox.showinfo('Error',"Error, vuélvalo a intentar", icon = 'warning')
             else:
-                print("ERROR: Registro inexistente")
+                msgBox = messagebox.showinfo('Error',"Registro inexistente", icon = 'warning')
 
         return AND_fun(funcstr,funcion[0], funcion[1], funcion[2])  #Una vez validado el contenido pasa a la operacion
 
     else:
-        print("ERROR: Cantidad de registros erronea")
+        msgBox = messagebox.showinfo('Error',"Cantidad de registros errónea", icon = 'warning')
     print(funcion)
 
 

@@ -1,4 +1,6 @@
 from Herramientas import *
+from tkinter import *
+from tkinter import messagebox
 
 
 def prepareLd(funcion):  # Hace la evaluacion inicial de la instruccion #"ldR1,a(R15)"
@@ -11,7 +13,7 @@ def prepareLd(funcion):  # Hace la evaluacion inicial de la instruccion #"ldR1,a
             i = 0
             for item in funcion:
                 if i != 1 and not ifRegistro(item):
-                    print("ERROR: Registros Invalidos")
+                    msgBox = messagebox.showinfo('Error',"Registros inválidos", icon = 'warning')
                     return 0
 
                 else:
@@ -22,17 +24,17 @@ def prepareLd(funcion):  # Hace la evaluacion inicial de la instruccion #"ldR1,a
                             if valorValido(item):
                                 constante = getNum(item)
                             else:
-                                print("ERROR: Valor no valido")
+                                msgBox = messagebox.showinfo('Error',"Valor no válido", icon = 'warning')
                                 return 0
                 i += 1
 
             return LD_fun(funcaux, funcion[2], constante, funcion[0])  # Una vez validado el contenido pasa a la operacion
 
         else:
-            print("ERROR: Cantidad de registros erronea")
+            msgBox = messagebox.showinfo('Error',"Cantidad de registros errónea", icon = 'warning')
         print(funcion)
     else:
-        print("ERROR: Error en la sintaxis de la instrucción")
+        msgBox = messagebox.showinfo('Error',"Error en la sintaxis de la instrucción", icon = 'warning')
 
 def LD_fun(funcion, Rb ,Dd, Rd):  # Recibe la funcion, Rd,Dd,Rb
     tipoi(funcion,"00010",Rb,Dd,Rd)  # Envia los valores para crear

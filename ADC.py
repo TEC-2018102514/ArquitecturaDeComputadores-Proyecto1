@@ -1,4 +1,6 @@
 from Herramientas import *
+from tkinter import *
+from tkinter import messagebox
 
 def prepareADC(funcion):
     funcstr = funcion
@@ -9,7 +11,7 @@ def prepareADC(funcion):
         i = 0
         for item in funcion:
             if i != 2 and not ifRegistro(item):
-                print("ERROR: Registros Invalidos")
+                msgBox = messagebox.showinfo('Error',"Registros inválidos", icon = 'warning')
                 return 0
             else:
                 if i == 2:
@@ -19,12 +21,12 @@ def prepareADC(funcion):
                         if valorValido(item):
                             constante = getNum(item)
                         else:
-                            print("ERROR: Valor no valido")
+                            msgBox = messagebox.showinfo('Error',"Valor no válido", icon = 'warning')
                             return 0
 
             i += 1
     else:
-        print("ERROR: Cantidad de elementos erronea")
+        msgBox = messagebox.showinfo('Error',"Cantidad de elementos errónea", icon = 'warning')
         return 0
     if constante is not None:
         return ADC_fun(funcstr,funcion[0],funcion[1],constante)
