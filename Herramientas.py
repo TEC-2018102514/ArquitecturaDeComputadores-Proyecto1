@@ -59,7 +59,10 @@ def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la 
         K = "000000"
     else:
         Rf2 = "0000"
-        K = BinToStr(str(bin(K)), 6)           # Envia el valor de k en binario, con el tama;o indicado para instruccion
+        if K < 0:
+            K = negToBin(K, 6)
+        else:
+            K = BinToStr(str(bin(K)), 6)           # Envia el valor de k en binario, con el tama;o indicado para instruccion
     inst_bin = f + Condicion + Tipo + K + Rd + Rf1 + Rf2 + IC   # Se agregan los valores en el orden correcto a un string
     salida_indiv['binario'] = inst_bin          #En el diccionario de la instruccion se agregan los valores de salida,
     dec = int(inst_bin,2)                       #Esta salida individual se debe agregar a una lista en donde esten
@@ -69,7 +72,10 @@ def tipoA(inst, IC, Rf2, Rf1, Rd, K, Tipo, Condicion, f):           #Traduce la 
 def tipoi(funcion,IC,Rb,Dd,Rd):
     salida_indiv = {'instruccion': funcion, 'binario': '', 'hexa': ''}
     Rb = regist_strbin(Rb)
-    Dd = BinToStr(bin(Dd),19)
+    if Dd < 0:
+        Dd = negToBin(Dd, 19)
+    else:
+        Dd = BinToStr(bin(Dd), 19)
     Rd = regist_strbin(Rd)
 
 
@@ -87,8 +93,14 @@ def tipoJ(inst, Dc, IC):
     dec = int(binfinal, 2)
     salida_indiv["hexa"] = hex(dec)[2:]
     print(salida_indiv)
-    
 
+
+def negToBin(num, tamaño):
+    num &= (2 << tamaño - 1) - 1  # mask
+    formatStr = '{:0' + str(tamaño) + 'b}'
+    ret = formatStr.format(int(num))
+    print(ret)
+    return ret
 
 def regist_strbin(registro):            # Recibe un registro y lo pasa al formato de str, por ejemplo
     RBin = bin(int(registro[1:]))       # regist_strbin("R2") = "0010"
@@ -123,9 +135,17 @@ def BinBase2ToStr(numero, tamaño):           # Recibe un numero binario y lo co
 
 
 def valorValido(numero):                #Verifica que el valor sea un hexadecimal, binario o decimal valido, recibe strings
-    if ifBin(numero) | ifHex(numero) | numero.isdigit():
+    if ifBin(numero) | ifHex(numero) | isDec(numero):
         return True
     else:
+        return False
+
+
+def isDec(numero):
+    try:
+        int(numero)
+        return True
+    except:
         return False
 
 
@@ -137,7 +157,6 @@ def ifBin(numero):                      #Revisa que el valor sea un binario vali
             int(numero, 2)
             return True
         except:
-            print("ERROR: Numero binario incorrecto")
             return False
     else:
         return False
@@ -150,7 +169,6 @@ def ifHex(numero):                      # Revisa que el valor sea u hexadecimal 
             int(numero, 16)
             return True
         except:
-            print("ERROR: Numero hexadecimal incorrecto")
             return False
     else:
         return False
@@ -159,9 +177,12 @@ def ifHex(numero):                      # Revisa que el valor sea u hexadecimal 
 def getNum(numero):
     if ifHex(numero):
         return int(numero[2:], 16)
-    elif numero.isdigit():
+    elif isDec(numero):
         return int(numero)
     elif ifBin(numero):
-        return int(numero[2:],2)
+        if numero[3] == "1":
+            return int("-" + (str(int(numero[3:], 2))))
+        else:
+            return int(numero[2:],2)
     else:
         print("ERROR: Valor No Valido")
